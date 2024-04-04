@@ -3,16 +3,20 @@
 import { program } from 'commander';
 
 program
+  .version('1.0.0')
   .description('Compares two configuration files and shows a difference.')
-  .version('1.0.0', '-V, --version', 'output the version number')
+  .arguments('<filepath1> <filepath2>')
+  .option('-f, --format [type]', 'output format')
   .option('-h, --help', 'output usage information')
-  .parse(process.argv);
+  .action((filepath1, filepath2) => {
+    // логика обработки файлов
+    console.log(filepath1);
+    console.log(filepath2);
+  });
 
-// проверка наличия элемента -h в массиве аргументов командной строки
-const hasHelpOption = process.argv.includes('-h') || process.argv.includes('--help');
-
-if (hasHelpOption) {
-  program.help(); // Вывод справки
-// } else {
-//   program.parse(process.argv);
+// Вывод справочной информации при запуске с флагом -h или --help
+// process.argv[0] содержит путь к исполняемому файлу Node.js,
+// process.argv[1] содержит путь к текущему скрипту
+if (process.argv.includes('-h') || process.argv.includes('--help')) {
+  program.outputHelp();
 }
