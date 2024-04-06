@@ -17,7 +17,12 @@ The program compares two configuration files and shows a difference
 * eslint-plugin-import
 
 ### Setup:
-```bash
+```
+git clone git@github.com:KarnaDev/frontend-project-46.git
+```
+```
 sudo apt install make
+```
+```
 make install
 ```
