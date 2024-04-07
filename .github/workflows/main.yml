@@ -1,34 +1,32 @@
-name: Project test & build
+name: Linter & Jest
 
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+  - push
 
 jobs:
-  build-and-deploy:
+  tests:
+
     runs-on: ubuntu-latest
-    
-        steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v2.3.1
+
+    steps:
+
+      - uses: actions/checkout@v3
+
+      - name: Install node.js
+        uses: actions/setup-node@v3
         with:
-          persist-credentials: false
-
-      - name: Install 🔧
-        run: npm install
-
-      - name: Run Test 🔨
-        run: npm run test
-
-      - name: Build 👷
-        run: npm run build
-
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@3.7.1
+          node-version: '21.x'
+          cache: 'npm'
+      - name: Install dependencies
+        run: make install
+      - name: Run linter
+        run: make lint
+      - name: Run tests
+        run: make test
+      - name: Code Coverage
+        uses: paambaati/codeclimate-action@v5.0.0
+        env:
+          CODECLIMATE_KEY: ${{ secrets.CODECLIMATE_KEY }}
         with:
-          GITHUB_TOKEN: ${{ secrets.KEY }}
-          BRANCH: gh-pages
-          FOLDER: public
-          CLEAN: true
+          coverageCommand: make test-coverage
+          debug: true
