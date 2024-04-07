@@ -20,19 +20,23 @@ const getUniqKeys = (file1, file2) => {
 
 const compareFiles = (file1, file2) => {
   const uniqKeys = getUniqKeys(file1, file2);
-  const diffs = uniqKeys.flatMap((key) => {
-    const valuesEqual = _.isEqual(file1[key], file2[key]);
+  const diffs = [];
 
-    if (_.has(file1, key) && _.has(file2, key) && valuesEqual) {
-      return [`  ${key}: ${file1[key]}`];
-    } else if (_.has(file1, key) && _.has(file2, key) && !valuesEqual) {
-      return [`- ${key}: ${file1[key]}`, `+ ${key}: ${file2[key]}`];
-    } else if (_.has(file1, key)) {
-      return [`- ${key}: ${file1[key]}`];
-    } else if (_.has(file2, key)) {
-      return [`+ ${key}: ${file2[key]}`];
+  uniqKeys.forEach((key) => {
+    const value1 = file1[key];
+    const value2 = file2[key];
+
+    if (_.isEqual(value1, value2)) {
+      diffs.push(`  ${key}: ${value1}`);
+    } else if (value1 === undefined) {
+      diffs.push(`+ ${key}: ${value2}`);
+    } else if (value2 === undefined) {
+      diffs.push(`- ${key}: ${value1}`);
+    } else {
+      diffs.push(`- ${key}: ${value1}`, `+ ${key}: ${value2}`);
     }
   });
+
   return diffs;
 };
 
