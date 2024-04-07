@@ -12,10 +12,14 @@ const readFileAsJSON = (filePath) => {
   return JSON.parse(fs.readFileSync(absPath));
 };
 
-const compareFiles = (file1, file2) => {
+const getUniqKeys = (file1, file2) => {
   const keys1 = _.keys(file1);
   const keys2 = _.keys(file2);
-  const uniqKeys = _.union(keys1, keys2).sort();
+  return _.union(keys1, keys2).sort();
+};
+
+const compareFiles = (file1, file2) => {
+  const uniqKeys = getUniqKeys(file1, file2);
   const diffs = uniqKeys.reduce(((acc, key) => {
     const hasKeyInFile1 = _.has(file1, key);
     const hasKeyInFile2 = _.has(file2, key);
