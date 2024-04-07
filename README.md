@@ -33,3 +33,8 @@ sudo apt install make
 ```
 make install
 ```
+
+---
+
+### Demonstraion:
+[![asciicast](https://asciinema.org/a/Mu6WtGdmN4QN06W4nu3my0n6l.svg)](https://asciinema.org/a/Mu6WtGdmN4QN06W4nu3my0n6l)
