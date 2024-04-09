@@ -14,6 +14,7 @@ The program compares two configuration files and shows a difference
 **dependencies:**
 * commander
 * lodash
+* js-yaml
 
 ---
 
