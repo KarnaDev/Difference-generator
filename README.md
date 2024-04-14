@@ -39,4 +39,11 @@ make install
 ---
 
 ### Demonstraion:
-[![asciicast](https://asciinema.org/a/Mu6WtGdmN4QN06W4nu3my0n6l.svg)](https://asciinema.org/a/Mu6WtGdmN4QN06W4nu3my0n6l)
+Comparing .json files
+[![asciicast](https://asciinema.org/a/651318.svg)](https://asciinema.org/a/651318)
+
+Comparing .yml files
+[![asciicast](https://asciinema.org/a/654155.svg)](https://asciinema.org/a/654155)
+
+Stylish formatter
+[![asciicast](https://asciinema.org/a/654154.svg)](https://asciinema.org/a/654154)
