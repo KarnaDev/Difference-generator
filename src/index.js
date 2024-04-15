@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import readFile from './parsers.js';
 import makeStylish from './formatters/stylish.js';
+import makePlain from './formatters/plain.js';
 
 // const getAbsolutePath = (file) => path.resolve(process.cwd(), file);
 // If, after processing given path, an absolute path has not yet been generated,
@@ -64,6 +65,8 @@ const genDiff = (filePath1, filePath2, format = 'stylish') => {
 
   if (format === 'stylish') {
     return makeStylish(abstractTree);
+  } if (format === 'plain') {
+    return makePlain(abstractTree);
   }
   throw new Error(`Unexpected format: ${format}`);
 };
