@@ -2,10 +2,7 @@ import _ from 'lodash';
 import readFile from './parsers.js';
 import makeStylish from './formatters/stylish.js';
 import makePlain from './formatters/plain.js';
-
-// const getAbsolutePath = (file) => path.resolve(process.cwd(), file);
-// If, after processing given path, an absolute path has not yet been generated,
-// the current working directory is used
+import makeJson from './formatters/json.js';
 
 // Gets unique keys from two objects
 const getUniqueKeys = (file1, file2) => {
@@ -63,12 +60,16 @@ const genDiff = (filePath1, filePath2, format = 'stylish') => {
   const file2 = readFile(filePath2);
   const abstractTree = Object.values(compareFiles(file1, file2));
 
-  if (format === 'stylish') {
-    return makeStylish(abstractTree);
-  } if (format === 'plain') {
-    return makePlain(abstractTree);
+  switch (format) {
+    case 'stylish':
+      return makeStylish(abstractTree);
+    case 'plain':
+      return makePlain(abstractTree);
+    case 'json':
+      return (JSON.stringify(makeJson(abstractTree), null, 2));
+    default:
+      throw new Error(`Unexpected format: ${format}`);
   }
-  throw new Error(`Unexpected format: ${format}`);
 };
 
 export default genDiff;

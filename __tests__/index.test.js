@@ -21,6 +21,8 @@ const testCases = [
   ['file1.yml', 'file2.yaml', 'result-stylish.txt', 'stylish'],
   ['file1.json', 'file2.json', 'result-plain.txt', 'plain'],
   ['file1.yml', 'file2.yaml', 'result-plain.txt', 'plain'],
+  ['file1.json', 'file2.json', 'result-json.txt', 'json'],
+  ['file1.yml', 'file2.yaml', 'result-json.txt', 'json'],
 ];
 
 testCases.forEach(([file1, file2, resultFile, format = 'stylish']) => {
