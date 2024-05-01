@@ -24,29 +24,25 @@ const compareFiles = (file1, file2) => {
       const node = { name: nodeKey };
 
       if (_.isEqual(nodeValue1, nodeValue2)) {
-        node.type = 'unchanged';
-        node.value = nodeValue1;
-      } else if (nodeValue1 === undefined) {
-        node.type = 'added';
-        node.value = nodeValue2;
-      } else if (nodeValue2 === undefined) {
-        node.type = 'deleted';
-        node.value = nodeValue1;
-      } else if (_.isObject(nodeValue1) && _.isObject(nodeValue2)) {
+        return { ...node, type: 'unchanged', value: nodeValue1 };
+      }
+      if (nodeValue1 === undefined) {
+        return { ...node, type: 'added', value: nodeValue2 };
+      }
+      if (nodeValue2 === undefined) {
+        return { ...node, type: 'deleted', value: nodeValue1 };
+      }
+      if (_.isObject(nodeValue1) && _.isObject(nodeValue2)) {
         // Recursively compares nested objects when both values are objects
         const nestedDiff = compareFiles(nodeValue1, nodeValue2);
-        node.type = 'nested';
-        node.children = Object.values(nestedDiff);
-      } else {
-        node.type = 'changed';
-        node.from = nodeValue1;
-        node.to = nodeValue2;
+        return { ...node, type: 'nested', children: Object.values(nestedDiff) };
       }
-
-      return node;
+      return {
+        ...node, type: 'changed', from: nodeValue1, to: nodeValue2,
+      };
     };
 
-    return { ...acc, [key]: createNode(key, value1, value2) };
+    return { ...acc, [key]: { ...createNode(key, value1, value2) } };
   }, {});
 };
 
