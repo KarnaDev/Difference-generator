@@ -8,7 +8,7 @@ import makeJson from './formatters/json.js';
 const getUniqueKeys = (file1, file2) => {
   const keys1 = Object.keys(file1);
   const keys2 = Object.keys(file2);
-  return _.union(keys1, keys2).sort();
+  return _.union(keys1, keys2).slice().sort();
 };
 
 // Compares two files and creates an abstract tree of differences
@@ -66,7 +66,7 @@ const genDiff = (filePath1, filePath2, format = 'stylish') => {
     case 'plain':
       return makePlain(abstractTree);
     case 'json':
-      return (JSON.stringify(makeJson(abstractTree), null, 2));
+      return JSON.stringify(makeJson(abstractTree), null, 2);
     default:
       throw new Error(`Unexpected format: ${format}`);
   }
