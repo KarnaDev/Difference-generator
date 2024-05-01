@@ -8,7 +8,7 @@ import makeJson from './formatters/json.js';
 const getUniqueKeys = (file1, file2) => {
   const keys1 = Object.keys(file1);
   const keys2 = Object.keys(file2);
-  return _.union(keys1, keys2).slice().sort();
+  return _.sortBy(_.union(keys1, keys2));
 };
 
 // Compares two files and creates an abstract tree of differences
