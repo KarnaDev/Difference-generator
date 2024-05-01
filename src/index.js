@@ -14,9 +14,8 @@ const getUniqueKeys = (file1, file2) => {
 // Compares two files and creates an abstract tree of differences
 const compareFiles = (file1, file2) => {
   const uniqueKeys = getUniqueKeys(file1, file2);
-  const differences = {};
 
-  uniqueKeys.forEach((key) => {
+  return uniqueKeys.reduce((acc, key) => {
     const value1 = file1[key];
     const value2 = file2[key];
 
@@ -47,11 +46,9 @@ const compareFiles = (file1, file2) => {
       return node;
     };
 
-    const node = createNode(key, value1, value2);
-    differences[key] = node;
-  });
-
-  return differences;
+    acc[key] = createNode(key, value1, value2);
+    return acc;
+  }, {});
 };
 
 // Generates differences between two files
