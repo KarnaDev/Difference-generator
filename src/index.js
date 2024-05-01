@@ -46,8 +46,7 @@ const compareFiles = (file1, file2) => {
       return node;
     };
 
-    acc[key] = createNode(key, value1, value2);
-    return acc;
+    return { ...acc, [key]: createNode(key, value1, value2) };
   }, {});
 };
 
