@@ -6,16 +6,10 @@ const makeJson = (abstractTree) => abstractTree.reduce((transformedData, {
   };
 
   if (type === 'nested') {
-    node.children = makeJson(children);
-  } else {
-    node.value = value;
-    if (type === 'changed') {
-      node.from = from;
-      node.to = to;
-    }
+    return { ...transformedData, [name]: { ...node, children: makeJson(children) } };
   }
 
-  return { ...transformedData, [name]: node };
+  return { ...transformedData, [name]: { ...node, value, ...(type === 'changed' && { from, to }) } };
 }, {});
 
 export default makeJson;
