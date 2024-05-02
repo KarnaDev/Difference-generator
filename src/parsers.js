@@ -4,7 +4,11 @@ import yaml from 'js-yaml';
 
 const supportedFormats = ['.json', '.yml', '.yaml'];
 
-const readFile = (file) => {
+const parseData = (fileContent, format) => {
+  return format === '.json' ? JSON.parse(fileContent) : yaml.load(fileContent);
+};
+
+export default (file) => {
   const absPath = path.resolve(file);
   const format = path.extname(absPath).toLowerCase();
 
@@ -13,12 +17,5 @@ const readFile = (file) => {
   }
 
   const fileContent = fs.readFileSync(absPath, 'utf8');
-
-  if (format === '.json') {
-    return JSON.parse(fileContent);
-  }
-
-  return yaml.load(fileContent);
+  return parseData(fileContent, format);
 };
-
-export default readFile;
