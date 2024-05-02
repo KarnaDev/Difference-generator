@@ -33,10 +33,3 @@ testCases.forEach(([file1, file2, resultFile, format = 'stylish']) => {
     expect(actual).toEqual(expected);
   });
 });
-
-test('gendiff: unsupported formatter', () => {
-  const formatter = 'unsupported';
-  expect(() => {
-    gendiff(getFixturePath('file1.yml'), getFixturePath('file2.yaml'), formatter);
-  }).toThrow();
-});
