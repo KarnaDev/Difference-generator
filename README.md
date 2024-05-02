@@ -89,25 +89,29 @@ make install
 
         gendiff -f json path/to/file path/to/another/file
 
-        {
-          "common": {
+        [
+          {
+            "name": "common",
             "type": "nested",
-            "children": {
-              "follow": {
+            "children": [
+              {
+                "name": "follow",
                 "type": "added",
                 "value": false
               },
-              "setting1": {
+              {
+                "name": "setting1",
                 "type": "unchanged",
                 "value": "Value 1"
               },
-              "setting2": {
+              {
+                "name": "setting2",
                 "type": "deleted",
                 "value": 200
-              },       
-            }
+              },
+            ]
           }
-        }
+        ]
 
 ---
 
