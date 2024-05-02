@@ -1,81 +1,98 @@
-{
-  "common": {
+[
+  {
+    "name": "common",
     "type": "nested",
-    "children": {
-      "follow": {
+    "children": [
+      {
+        "name": "follow",
         "type": "added",
         "value": false
       },
-      "setting1": {
+      {
+        "name": "setting1",
         "type": "unchanged",
         "value": "Value 1"
       },
-      "setting2": {
+      {
+        "name": "setting2",
         "type": "deleted",
         "value": 200
       },
-      "setting3": {
+      {
+        "name": "setting3",
         "type": "changed",
         "from": true,
         "to": null
       },
-      "setting4": {
+      {
+        "name": "setting4",
         "type": "added",
         "value": "blah blah"
       },
-      "setting5": {
+      {
+        "name": "setting5",
         "type": "added",
         "value": {
           "key5": "value5"
         }
       },
-      "setting6": {
+      {
+        "name": "setting6",
         "type": "nested",
-        "children": {
-          "doge": {
+        "children": [
+          {
+            "name": "doge",
             "type": "nested",
-            "children": {
-              "wow": {
+            "children": [
+              {
+                "name": "wow",
                 "type": "changed",
                 "from": "",
                 "to": "so much"
               }
-            }
+            ]
           },
-          "key": {
+          {
+            "name": "key",
             "type": "unchanged",
             "value": "value"
           },
-          "ops": {
+          {
+            "name": "ops",
             "type": "added",
             "value": "vops"
           }
-        }
+        ]
       }
-    }
+    ]
   },
-  "group1": {
+  {
+    "name": "group1",
     "type": "nested",
-    "children": {
-      "baz": {
+    "children": [
+      {
+        "name": "baz",
         "type": "changed",
         "from": "bas",
         "to": "bars"
       },
-      "foo": {
+      {
+        "name": "foo",
         "type": "unchanged",
         "value": "bar"
       },
-      "nest": {
+      {
+        "name": "nest",
         "type": "changed",
         "from": {
           "key": "value"
         },
         "to": "str"
       }
-    }
+    ]
   },
-  "group2": {
+  {
+    "name": "group2",
     "type": "deleted",
     "value": {
       "abc": 12345,
@@ -84,7 +101,8 @@
       }
     }
   },
-  "group3": {
+  {
+    "name": "group3",
     "type": "added",
     "value": {
       "deep": {
@@ -95,4 +113,4 @@
       "fee": 100500
     }
   }
-}
+]
