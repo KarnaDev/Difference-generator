@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import makeStylish from './formatters/stylish.js';
 import makePlain from './formatters/plain.js';
 

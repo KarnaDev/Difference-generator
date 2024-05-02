@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import readFile from './parsers.js';
 import generateTree from './tree-generator.js';
 import selectFormatter from './formatter-selector.js';
